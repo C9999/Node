@@ -1,0 +1,26 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Teste de descrição",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C9999/Node.git"
+  },
+  "keywords": [
+    "APi",
+    "Test",
+    "Mocha",
+    "SuperTest",
+    "Chai"
+  ],
+  "author": "Carlos Araújo (car_soad@hotmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C9999/Node/issues"
+  },
+  "homepage": "https://github.com/C9999/Node#readme"
+}
