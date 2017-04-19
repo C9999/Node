@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/C9999/Node/issues"
   },
-  "homepage": "https://github.com/C9999/Node#readme"
+  "homepage": "https://github.com/C9999/Node#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0"
+  }
 }
