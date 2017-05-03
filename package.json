@@ -4,7 +4,7 @@
   "description": "Teste de descrição",
   "main": "test.js",
   "scripts": {
-    "test": "mocha -R spec test.js"
+    "test": "mocha -R spec test/test.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,9 @@
   },
   "homepage": "https://github.com/C9999/Tentando-testar-API-PhoneBook#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "mongojs": "2.4.0",
     "chai": "^1.10.0",
-    "gulp": "^3.9.1",
     "mocha": "^2.5.3",
     "supertest": "^0.15.0"
   }
