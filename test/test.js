@@ -3,7 +3,6 @@
 var expect = require('chai').expect;
 var assert = require('chai').assert;
 var request = require('supertest');
-var ObjectId = mongojs.ObjectId;
 
 var url = 'http://localhost:5000';
 
@@ -14,14 +13,18 @@ var contatoCompleto = {
 };
 
 var contatoCompleto2 = {
-  //'_id': ObjectId('590a07af37a33e16e6555555'),
   'name': 'Jolteon',
   'mobilephone': '0551185084469',
   'homephone': '0551141394567'
 };
 
+var update = {
+  'name': 'TesterHighLevel',
+  'mobilephone': '09931999998888',
+  'homephone': '0993134345656'
+};
 
-describe.skip('Teste na API PhoneBook - método: POST', function() {
+describe('Teste na API PhoneBook - método: POST', function() {
   it('/POST: inserindo contato completo', function(done) {
     request(url)
     .post('/contacts/')
@@ -38,7 +41,7 @@ describe.skip('Teste na API PhoneBook - método: POST', function() {
   });
 });
 
-describe.skip('Teste na API PhoneBook - DELETE ', function() {
+describe('Teste na API PhoneBook - DELETE ', function() {
   it('Excluindo um contato via ID.', function(done) {
     request(url)
     .delete('/contacts/56d5efa8c82593800291c02b')
@@ -49,7 +52,7 @@ describe.skip('Teste na API PhoneBook - DELETE ', function() {
   });
 });
 
-describe.skip('Teste na API PhoneBook - Sem usuários na base ', function() {
+describe('Teste na API PhoneBook - Sem usuários na base ', function() {
   it('Validando base sem nenhum usuário', function(done) {
     request(url)
     .delete('/contacts/56d5efa8c82593800291c02b')
@@ -60,27 +63,26 @@ describe.skip('Teste na API PhoneBook - Sem usuários na base ', function() {
   });
 });
 
-describe('Adicionando e deletando mesmo contato com unico IT: POST', function() {
-  it('/POST: inserindo contato completo', function(done) {
+describe('Teste na API PhoneBook - retorno 404', function() {
+  it('/Delete: deve retornar 404 ', function(done) {
     request(url)
-    .post('/contacts/')
-    .set('Content-type', 'application/json')
-    .send(contatoCompleto2)
+    .delete('/contacts/56d3008555d5d37001675555')
     .end(function(err, res) {
-      var result = JSON.parse(res.text);
-      assert.equal(res.status, 201);
-      assert.equal(result.name, 'Jolteon', 'Conferindo o name!');
-      assert.equal(result.mobilephone, '0551185084469', 'Conferindo o mobilephone!');
-      assert.equal(result.homephone, '0551141394567', 'Conferindo o homephone!');
+      assert.equal(res.status, 404);
+      assert.equal(res.text, 'Not Found');
       done();
-
-      request(url)
-      .delete('/contacts/id')
-      .end(function(err, res) {
-        assert.equal(res.status, 404);
-        assert.equal(res.text, 'Not Found');
-        done();
-      });
     });
   });
 });
+
+/*describe('Teste na API PhoneBook - método: Update')
+it('PUT - Deve atualizar nome e telefone do contato', function(done) {
+  _conn.contacts.insert(fullContact, function(err, res) {
+    request(app)
+      .put('/contacts/56d5efa8c82593800291c02b')
+      .set('Content-type', 'application/json')
+      .send(fullContact)
+      .expect(204,done);
+      });
+  });
+*/
